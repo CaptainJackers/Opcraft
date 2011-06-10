@@ -267,6 +267,13 @@ $(document).ready(function(){
 				jsonApi.call('getServerVersion', [], function(versionNumber) {
 					versionNumber = versionNumber.success;
 					updateContent(tmpl({version: versionNumber}));
+               /* jsonApi.call('system.getJavaMemoryUsage', [], function(freeMemory) {
+					freeMemory = freeMemory.success;
+					updateContent(tmpl({freeMem: freeMemory}));
+				});
+                jsonApi.call('system.getJavaMemoryTotal', [], function(totalMemory) {
+					totalMemory = totalMemory.success;
+					updateContent(tmpl({totalMem: totalMemory}));*/
 				});
 				break;
 		}
@@ -425,7 +432,22 @@ $(document).ready(function(){
 						case 'setTime':
 							args.push('time set ' + $('#newTime').val());
 							break;
+                        case 'reloadPerms':
+							args.push('permissions -reload all ');
+							break;
+                        case 'promote':
+							args.push('promote ' + opts[0] + ' world');
+							break;
+                        case 'demote':
+							args.push('demote ' + opts[0] + ' world');
+							break;
+                        case 'user':
+                            var gro = prompt('What group do you want to add this user to?');
+                            if (!gro) return;
+							args.push('user -setgroup u:' + opts[0] + ' s:' + $gro + ' w:world');
+							break;
 					}
+                    
 					break;
 				case 'reloadServer':
 					var confirmed = confirm('Are you sure you want to reload the server?');
