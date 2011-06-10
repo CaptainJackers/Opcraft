@@ -77,8 +77,12 @@
 						Reload Server
 						<button id="reloadServer" data-method="reloadServer">Reload</button>
 					</li>
+                    <li>
+						Reload Permissions
+						<button id="reloadServer" data-command="reloadPerms" data-method="runConsoleCommand">Reload</button>
+					</li>
 					<li>
-						Clear JSONAPI Credentials
+						Clear Credentials
 						<button id="clearCredentials" data-method="clearCredentials">Clear</button>
 				</ul>
 			</div>
@@ -114,6 +118,7 @@
 				<section class="actions">
 					<button data-opts="<%= player.name %>" data-method="opPlayer">Op</button>
 					<button data-opts="<%= player.name %>" data-method="deopPlayer">Deop</button>
+                    <button data-opts="<%= player.name %>" data-command="user" data-method="runConsoleCommand">Set Group</button>
 					<button data-opts="<%= player.name %>" data-method="teleport">Teleport…</button>
 					<button data-opts="<%= player.name %>" data-method="kickPlayer">Kick</button>
 				</section>
@@ -140,20 +145,20 @@
 
 		<script type="text/template" id="tmplLoginForm">
 			<form class="fancy">
-				<label>Host</label>
-				<input type="text" id="host" placeholder="Server name/IP">
+				<!---<label>Host</label>--->
+				<input type="hidden" id="host" value ="10.0.0.120" placeholder="Server name/IP">
 
 				<label>Username</label>
-				<input type="text" id="user" placeholder="JSONAPI username">
+				<input type="text" id="user" placeholder="Username">
 
 				<label>Password</label>
-				<input type="password" id="pass" placeholder="JSONAPI password">
+				<input type="password" id="pass" placeholder="Password">
 
-				<label>Salt</label>
-				<input type="password" id="salt" placeholder="Leave blank if default">
+				<!---<label>Salt</label>--->
+				<input type="hidden" id="salt" placeholder="Leave blank if default">
 
-				<label>Port</label>
-				<input type="tel" id="port" placeholder="Leave blank if default">
+				<!---<label>Port</label>--->
+				<input type="hidden" id="port" placeholder="Leave blank if default">
 
 				<input type="submit" value="Log In">
 			</form>
